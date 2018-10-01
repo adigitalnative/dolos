@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe "A Room" do
   before(:all) do
-    @room = Room.create(name: "Room One", description: "Room One Description foo")
+    @room = FactoryBot.create(:room, name: "Room One", description: "Room One Description foo")
   end
   it "has a name" do
     expect(@room.name).to eq("Room One")

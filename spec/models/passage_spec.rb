@@ -2,6 +2,6 @@ require 'spec_helper'
 
 RSpec.describe "A passage" do
   before(:all) do
-    # @room = Room.new()
+    # @room = FactoryBot.create(:)
   end
 end
