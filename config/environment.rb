@@ -1,0 +1,23 @@
+require 'bundler/setup'
+Bundler.require
+
+require 'active_record'
+require 'rake'
+
+# Require all of our models
+Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| require f}
+Dir[File.join(File.dirname(__FILE__), "../lib", "*.rb")].each {|f| require f}
+
+
+# Set up the database based on our env & database.yml
+ENV["DOLOR_ENV"] ||= "development"
+
+ActiveRecord::Base.establish_connection(
+  YAML.load(File.read('config/database.yml'))[ENV["DOLOR_ENV"]]
+)
+
+DB = ActiveRecord::Base.connection
+
+if ENV["DOLOR_ENV"] == "test"
+  ActiveRecord::Migration.verbose = false
+end

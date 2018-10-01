@@ -1,2 +1,2 @@
 # dolos
-Ruby Game CLI
+A Ruby Game CLI
