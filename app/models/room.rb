@@ -4,6 +4,8 @@ class Room < ActiveRecord::Base
   has_many :exit_rooms, through: :exits,  source: :exit
   has_many :entrance_rooms, through: :entrances,  source: :entrance
   has_many :items, as: :ownable
+  has_many :players
+  belongs_to :game
 
   def connect_to(other_room, name="A door")
     # creates a door leading to self

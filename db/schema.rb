@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_02_184909) do
+ActiveRecord::Schema.define(version: 2018_10_02_192612) do
 
   create_table "doors", force: :cascade do |t|
     t.string "name", null: false
@@ -25,8 +25,6 @@ ActiveRecord::Schema.define(version: 2018_10_02_184909) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "player_id"
-    t.index ["player_id"], name: "index_games_on_player_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -41,6 +39,10 @@ ActiveRecord::Schema.define(version: 2018_10_02_184909) do
   create_table "players", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "room_id"
+    t.integer "game_id"
+    t.index ["game_id"], name: "index_players_on_game_id"
+    t.index ["room_id"], name: "index_players_on_room_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -48,6 +50,8 @@ ActiveRecord::Schema.define(version: 2018_10_02_184909) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "game_id"
+    t.index ["game_id"], name: "index_rooms_on_game_id"
   end
 
 end
