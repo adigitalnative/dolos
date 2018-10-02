@@ -21,3 +21,8 @@ DB = ActiveRecord::Base.connection
 if ENV["DOLOR_ENV"] == "test"
   ActiveRecord::Migration.verbose = false
 end
+
+# Don't log errors to the console in development
+if ENV["DOLOR_ENV"] == "development"
+  ActiveRecord::Base.logger.level = 1 
+end

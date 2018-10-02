@@ -10,7 +10,6 @@ task :console do
 end
 
 namespace :factory do
-
   desc "create a new bot with given name, NAME='the name'"
   task :create_bot do
     touch "./spec/factories/#{ENV['NAME']}.rb"

@@ -41,10 +41,10 @@ RSpec.describe "Starting the app" do
 
   context "when there is an existing game" do
     before(:all) do
-      # @game_one = FactoryBot.create(:game)
+      @game_one = FactoryBot.create(:game)
     end
 
-    xit "asks the user if they'd like to load a saved game (load)" do
+    it "asks the user if they'd like to load a saved game (load)" do
       expect { @game_runner.load_game_prompt }.to output(/load a saved game/).to_stdout
     end
   end
