@@ -10,19 +10,14 @@ Dir[File.join(File.dirname(__FILE__), "../lib", "*.rb")].each {|f| require f}
 
 
 # Set up the database based on our env & database.yml
-ENV["DOLOR_ENV"] ||= "development"
+ENV["DOLOS_ENV"] ||= "development"
 
 ActiveRecord::Base.establish_connection(
-  YAML.load(File.read('config/database.yml'))[ENV["DOLOR_ENV"]]
+  YAML.load(File.read('config/database.yml'))[ENV["DOLOS_ENV"]]
 )
 
 DB = ActiveRecord::Base.connection
 
-if ENV["DOLOR_ENV"] == "test"
+if ENV["DOLOS_ENV"] == "test"
   ActiveRecord::Migration.verbose = false
-end
-
-# Don't log errors to the console in development
-if ENV["DOLOR_ENV"] == "development"
-  ActiveRecord::Base.logger.level = 1 
 end
