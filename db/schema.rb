@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_01_213205) do
+ActiveRecord::Schema.define(version: 2018_10_02_002513) do
 
-  create_table "exits", force: :cascade do |t|
+  create_table "doors", force: :cascade do |t|
     t.string "name", null: false
     t.string "description", null: false
     t.integer "room_id"
-    t.integer "passage_id"
+    t.integer "exit_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["passage_id"], name: "index_exits_on_passage_id"
-    t.index ["room_id"], name: "index_exits_on_room_id"
+    t.index ["exit_id"], name: "index_doors_on_exit_id"
+    t.index ["room_id"], name: "index_doors_on_room_id"
   end
 
   create_table "rooms", force: :cascade do |t|
