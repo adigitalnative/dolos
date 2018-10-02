@@ -16,6 +16,7 @@ module PlayerActions
   end
 
   def look
+    puts "**********************************************************************"
     puts current_room.name
     puts ""
     puts current_room.description
@@ -27,12 +28,12 @@ module PlayerActions
   end
 
   def move(exit_string)
-    door = current_room.exits.find {|door| door.name = exit_string }
+    door = current_room.exits.find {|door| door.name.downcase == exit_string }
     if door
-      player.room = door.entrance
+      player.update_attributes(room:door.entrance)
       look
     else
-      puts "invalid entry please try again."
+      puts "That's not an exit!"
     end
   end
 end
