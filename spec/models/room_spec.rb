@@ -15,4 +15,13 @@ RSpec.describe "A Room" do
   it "has exits" do
     expect(@room).to respond_to(:exits)
   end
+
+  context ".connect_to(room, outgoing_name, incoming_name)" do
+    it "succeeds in connecting two rooms" do
+      room_two = FactoryBot.create(:room, name: "Room Two")
+      door_count = @room.doors.count
+      @room.connect(room_two, "East", "West")
+      expect(@room.doors.count).to eq(door_count + 1)
+    end
+  end
 end
