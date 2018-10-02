@@ -16,13 +16,9 @@ RSpec.describe "Game" do
     before do
       @player
     end
+
     it "loads the game" do
       expect { @game.load() }.to output(/Welcome to the game/).to_stdout
-    end
-
-    xit "has or creates a player" do
-      @game.load
-      expect(@game.player.class).to eq(Player)
     end
   end
 
@@ -35,6 +31,8 @@ RSpec.describe "Game" do
       expect(@game.player.class).to eq(Player)
     end
 
-    it "sets the player object's starting location to the created room"
+    it "sets the player object's starting location to the created room" do
+      expect(@game.player.room.class).to eq(Room)
+    end
   end
 end

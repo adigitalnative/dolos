@@ -18,4 +18,8 @@ class Game < ActiveRecord::Base
     rooms << starting_room
     player = Player.create(room: starting_room, game: self)
   end
+
+  def current_game
+    self
+  end
 end

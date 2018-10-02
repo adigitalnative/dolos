@@ -7,5 +7,7 @@ class Player < ActiveRecord::Base
 
   def look
     puts room.name
+    puts "/n"
+    puts room.description
   end
 end
