@@ -21,3 +21,4 @@ DB = ActiveRecord::Base.connection
 if ENV["DOLOS_ENV"] == "test"
   ActiveRecord::Migration.verbose = false
 end
+ActiveRecord::Base.logger=nil

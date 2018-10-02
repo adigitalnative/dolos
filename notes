@@ -1,0 +1,15 @@
+rake db:create_migration NAME=create_rooms
+rake db:create_migration NAME=create_charecters 
+t.string "name", null: false
+t.string "description"
+t.integer "location_id"
+
+
+rake db:create_migration NAME=create_items
+
+
+
+rake db:create_migration NAME=create_item_instances
+item_id
+t.integer :imageable_id
+t.string  :imageable_type
