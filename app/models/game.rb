@@ -13,10 +13,16 @@ class Game < ActiveRecord::Base
   end
 
   def setup_game
-    starting_room = Room.create(name: "The First Room", description: "A great room")
-    # Any code to build a starting world would go here.
-    rooms << starting_room
-    player = Player.create(room: starting_room, game: self)
+    setup_starting_rooms
+    rooms << @starting_room
+    player = Player.create(room: @starting_room, game: self)
+  end
+
+  def setup_starting_rooms
+    @starting_room = Room.create(name: "The First Room", description: "A great room", game: self)
+    second_room = Room.create(name: "The second room", description: "Another room", game: self)
+    @starting_room.connect_to(second_room, "East")
+    second_room.connect_to(@starting_room, "West")
   end
 
   def current_game

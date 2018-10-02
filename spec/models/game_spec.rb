@@ -23,8 +23,8 @@ RSpec.describe "Game" do
   end
 
   context ".setup_game" do
-    it "creates a starting room tied to the game" do
-      expect(@game.rooms.count).to eq(1)
+    it "creates starting rooms tied to the game" do
+      expect(@game.rooms.count).to be > 0
     end
 
     it "creates a player object" do
@@ -33,6 +33,18 @@ RSpec.describe "Game" do
 
     it "sets the player object's starting location to the created room" do
       expect(@game.player.room.class).to eq(Room)
+    end
+  end
+
+  context ".setup_starting_rooms" do
+    it "sets up two rooms" do
+      initial_room_count = @game.rooms.count
+      @game.setup_starting_rooms
+      expect(@game.rooms.count).to eq(initial_room_count + 2)
+    end
+    
+    it "connects the rooms" do
+
     end
   end
 end
