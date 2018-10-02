@@ -1,13 +1,17 @@
 module PlayerActions
 
   def parse_input
-    @input = gets.chomp
+    @input = gets.chomp.downcase
 
-    case @input.downcase
+    case @input.split(" ").first
     when "exit"
       return exit
+    when "move"
+      move(@input.split(" ", 2).last)
+    when "look"
+      look
     end
-    
+
     parse_input
   end
 
@@ -20,5 +24,15 @@ module PlayerActions
 
   def exit
     puts "Goodbye!"
+  end
+
+  def move(exit_string)
+    door = current_room.exits.find {|door| door.name = exit_string }
+    if door
+      player.room = door.entrance
+      look
+    else
+      puts "invalid entry please try again."
+    end
   end
 end
