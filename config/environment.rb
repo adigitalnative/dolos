@@ -20,6 +20,5 @@ DB = ActiveRecord::Base.connection
 
 if ENV["DOLOR_ENV"] == "test"
   ActiveRecord::Migration.verbose = false
-  ActiveRecord::Base.logger.level = 1
 end
 
