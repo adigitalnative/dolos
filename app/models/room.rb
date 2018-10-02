@@ -11,4 +11,12 @@ class Room < ActiveRecord::Base
     # creates a door leading to self
     Door.create(name: name, room_incoming_id: self.id, room_outgoing_id: other_room.id)
   end
+
+  def list_exits
+    exit_array = exits.map do |exit|
+      exit.name
+    end
+    "Exits: #{exit_array.join(", ")}"
+  end
+
 end

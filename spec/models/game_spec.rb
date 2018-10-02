@@ -59,4 +59,10 @@ RSpec.describe "Game" do
 
     it "prints the available exits"
   end
+
+  context ".current_room" do
+    it "returns a room" do
+      expect(@game.current_room.class).to eq(Room)
+    end
+  end
 end

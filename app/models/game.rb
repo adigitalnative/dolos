@@ -11,6 +11,7 @@ class Game < ActiveRecord::Base
     sleep(0.5)
     puts "Welcome to the game."
     look
+    parse_input
   end
 
   def setup_game
@@ -28,6 +29,10 @@ class Game < ActiveRecord::Base
 
   def current_game
     self
+  end
+
+  def current_room
+    player.room
   end
 
 
