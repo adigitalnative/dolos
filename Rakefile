@@ -9,7 +9,7 @@ task :console do
   Pry.start
 end
 
-namespace :factory_bot do
+namespace :factory do
 
   desc "create a new bot with given name, NAME='the name'"
   task :create_bot do
