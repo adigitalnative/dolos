@@ -1,4 +1,4 @@
-ENV["PLAYLISTER_ENV"] ||= "development"
+ENV["DOLOS_ENV"] ||= "development"
 
 require_relative './config/environment'
 require 'sinatra/activerecord/rake'
@@ -7,4 +7,12 @@ require 'sinatra/activerecord/rake'
 
 task :console do
   Pry.start
+end
+
+namespace :factory_bot do
+
+  desc "create a new bot with given name, NAME='the name'"
+  task :create_bot do
+    touch "./spec/factories/#{ENV['NAME']}.rb"
+  end
 end
