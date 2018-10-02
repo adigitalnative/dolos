@@ -47,4 +47,16 @@ RSpec.describe "Game" do
 
     end
   end
+
+  context ".look" do
+    it "prints the room title" do
+      expect {@game.look}.to output(/The First Room/).to_stdout
+    end
+
+    it "prints the room description" do
+      expect {@game.look}.to output(/A great room/).to_stdout
+    end
+
+    it "prints the available exits"
+  end
 end

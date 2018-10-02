@@ -1,4 +1,5 @@
 class Game < ActiveRecord::Base
+  include PlayerActions
 
   has_many :rooms
   has_one :player
@@ -9,7 +10,7 @@ class Game < ActiveRecord::Base
     puts "Loading........."
     sleep(0.5)
     puts "Welcome to the game."
-    player.look
+    look
   end
 
   def setup_game
@@ -28,4 +29,6 @@ class Game < ActiveRecord::Base
   def current_game
     self
   end
+
+
 end

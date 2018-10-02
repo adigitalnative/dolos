@@ -4,9 +4,9 @@ Bundler.require
 require 'active_record'
 require 'rake'
 
-# Require all of our models
-Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| require f}
+# Require all of our models and lib files
 Dir[File.join(File.dirname(__FILE__), "../lib", "*.rb")].each {|f| require f}
+Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| require f}
 
 
 # Set up the database based on our env & database.yml
