@@ -25,7 +25,8 @@ class Dolos::GameRunner
       create_and_begin_new_game
     when "load"
       if saved_games?
-        puts "Load game"
+        puts "Loading game #{game.name}"
+        @game.load
       else
         puts "There is no game to load... type 'help' for help"
         process_input
@@ -62,7 +63,8 @@ class Dolos::GameRunner
   def create_and_begin_new_game
     puts "Name your new game:"
     name = gets.chomp
-    @game = Game.new(name: name)
+    @game = Game.new(name: name, player: Player.new)
+    @game.load
   end
 
   private

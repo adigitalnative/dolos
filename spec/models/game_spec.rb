@@ -2,7 +2,8 @@ require 'spec_helper'
 
 RSpec.describe "Game" do
   before(:all) do
-    @game = FactoryBot.create(:game, name: "The Game")
+    player = FactoryBot.create(:player)
+    @game = FactoryBot.create(:game, name: "The Game", player: player)
   end
 
   context "attributes" do
@@ -11,12 +12,17 @@ RSpec.describe "Game" do
     end
   end
 
-  context "#create" do
-    it "loads the game"
-  end
-
   context ".load" do
-    it "loads the game"
-  end
+    before do
+      @player
+    end
+    it "loads the game" do
+      expect { @game.load() }.to output(/Welcome to the game/).to_stdout
+    end
 
+    it "has or creates a player" do
+      @game.load
+      expect(@game.player.class).to eq(Player)
+    end
+  end
 end
