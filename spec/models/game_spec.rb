@@ -2,7 +2,6 @@ require 'spec_helper'
 
 RSpec.describe "Game" do
   before(:all) do
-    player = FactoryBot.create(:player)
     @game = FactoryBot.create(:game, name: "The Game")
   end
 
@@ -51,18 +50,6 @@ RSpec.describe "Game" do
     it "creates two additional doors" do
       expect(Door.all.count).to eq(@initial_door_count + 2)
     end
-  end
-
-  context ".look" do
-    it "prints the room title" do
-      expect {@game.look}.to output(/The First Room/).to_stdout
-    end
-
-    it "prints the room description" do
-      expect {@game.look}.to output(/A great room/).to_stdout
-    end
-
-    it "prints the available exits"
   end
 
   context ".current_room" do
