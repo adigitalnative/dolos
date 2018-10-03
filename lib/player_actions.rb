@@ -58,7 +58,7 @@ module PlayerActions
   def move(exit_string)
     door = current_room.exits.find {|door| door.name.downcase == exit_string }
     if door
-      player.update_attributes(room:door.entrance)
+      player.update_attributes(location:door.entrance)
       look
     else
       puts "That's not an exit!"
@@ -67,8 +67,7 @@ module PlayerActions
   
   def pickup_item(item_string)
     item = current_room.items.find {|el| el.name.downcase == item_string }
-    if item
-      # item.update_attributes(owner:player)
+    if item and item.owner==current_room
       item.owner=player
       item.save
       puts "Pickedup #{item.name}"
@@ -79,8 +78,7 @@ module PlayerActions
   
   def drop_item(item_string)
     item = player.items.find {|el| el.name.downcase == item_string }
-    if item
-      # item.update_attributes(owner:current_room)
+    if item and item.owner==player
       item.owner=current_room
       item.save
       puts "Droped #{item.name}"
@@ -90,7 +88,7 @@ module PlayerActions
   end
   
   def inventory
-    player.items.each {|item| puts "#{item.name} - Description: #{item.description}"}
+    player.items.select{|item| item.owner=player}.each {|item| puts "#{item.name} - Description: #{item.description}"}
   end
   
 end
