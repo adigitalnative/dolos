@@ -11,6 +11,7 @@ module BuilderActions
     puts "dig...............dig a new room"
     puts "connect...........connect to an existing room"
     puts "list..............list all available rooms"
+    puts "teleport..........teleport to a specific room"
     puts ""
   end
 
@@ -30,6 +31,8 @@ module BuilderActions
       dig_room_prompt
       build_mode_menu
       get_build_input
+    when "teleport"
+      teleport
     when "exit"
       exit_build_mode
     end
@@ -80,8 +83,23 @@ module BuilderActions
     puts "y/n"
     case gets.chomp.downcase
     when "y"
-      new_room = Room.create(name: room_name, description: room_desc)
+      new_room = Room.create(name: room_name, description: room_desc, game: current_game)
       new_room.two_way_connect_to(current_room,  incoming_exit_name, outgoing_exit_name)
+    end
+  end
+
+  def teleport
+    puts "ID to teleport to:"
+    room_id = gets.chomp
+
+    puts "Room id #{room_id}"
+    if current_game.room_ids.include?(room_id.to_i)
+      player.update_attributes(room_id: room_id.to_i)
+      exit_build_mode
+    else
+      puts "That's not a valid room!"
+      build_mode_menu
+      get_build_input
     end
   end
 

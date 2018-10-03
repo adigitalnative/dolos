@@ -36,5 +36,11 @@ class Game < ActiveRecord::Base
     player.location
   end
 
+  def room_ids
+    rooms.map do |room|
+      room.id
+    end
+  end
+
 
 end
