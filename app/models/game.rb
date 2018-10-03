@@ -18,7 +18,7 @@ class Game < ActiveRecord::Base
   def setup_game
     setup_starting_rooms
     rooms << @starting_room
-    player = Player.create(room: @starting_room, game: self)
+    player = Player.create(location: @starting_room, game: self)
   end
 
   def setup_starting_rooms
@@ -32,7 +32,7 @@ class Game < ActiveRecord::Base
   end
 
   def current_room
-    player.room
+    player.location
   end
 
 

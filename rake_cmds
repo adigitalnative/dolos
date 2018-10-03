@@ -10,3 +10,5 @@ rake db:create_migration NAME=create_item_instances
 
 
 rake db:create_migration NAME=create_items
+
+rake db:migrate DOLOS_ENV='test'

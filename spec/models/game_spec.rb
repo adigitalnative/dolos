@@ -32,7 +32,7 @@ RSpec.describe "Game" do
     end
 
     it "sets the player object's starting location to the created room" do
-      expect(@game.player.room.class).to eq(Room)
+      expect(@game.player.location.class).to eq(Room)
     end
   end
 

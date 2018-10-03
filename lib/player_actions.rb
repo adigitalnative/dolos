@@ -1,13 +1,13 @@
 module PlayerActions
 
   def parse_input
-    @input = gets.chomp.downcase
-
-    case @input.split(" ").first
+    @input1 = gets.chomp.downcase
+    @input2 = @input1.split(" ", 2).last
+    case @input1.split(" ").first
     when "exit"
       exit_game
     when "move"
-      move(@input.split(" ", 2).last)
+      move(@input2)
     when "look"
       look
     when "menu"
@@ -15,11 +15,16 @@ module PlayerActions
     when "help"
       help
     when "edit"
-      if @input.split(" ", 2).last == "room"
+      if @input2 == "room"
         edit_room
       end
+    when "pickup"
+      pickup_item(@input2)
+    when "drop"
+      drop_item(@input2)
+    when "inv"
+      inventory
     end
-
     parse_input
   end
 
@@ -53,10 +58,37 @@ module PlayerActions
   def move(exit_string)
     door = current_room.exits.find {|door| door.name.downcase == exit_string }
     if door
-      player.update_attributes(room:door.entrance)
+      player.update_attributes(location:door.entrance)
       look
     else
       puts "That's not an exit!"
     end
   end
+  
+  def pickup_item(item_string)
+    item = current_room.items.find {|el| el.name.downcase == item_string }
+    if item and item.owner==current_room
+      item.owner=player
+      item.save
+      puts "Pickedup #{item.name}"
+    else
+      puts "No item to pickup."
+    end
+  end
+  
+  def drop_item(item_string)
+    item = player.items.find {|el| el.name.downcase == item_string }
+    if item and item.owner==player
+      item.owner=current_room
+      item.save
+      puts "Droped #{item.name}"
+    else
+      puts "No item to drop."
+    end
+  end
+  
+  def inventory
+    player.items.select{|item| item.owner=player}.each {|item| puts "#{item.name} - Description: #{item.description}"}
+  end
+  
 end
