@@ -12,6 +12,8 @@ module PlayerActions
       look
     when "menu"
       return_to_menu
+    when "help"
+      help
     end
 
     parse_input
@@ -27,13 +29,14 @@ module PlayerActions
 
   def help
     puts "Available Commands"
-    puts "look............display the current room"
-    puts "move 'exit'.....move through a specific exit"
-    puts "exit............exit the game"
-    puts "menu............back to game menu"
+    puts "look.................display the current room"
+    puts "move <exit>..........move through a specific exit"
+    puts "exit.................exit the game"
+    puts "menu.................back to game menu"
   end
 
   def return_to_menu
+    puts "Your location will be saved for the next time you play."
     Dolos::GameRunner.new.run
   end
 
