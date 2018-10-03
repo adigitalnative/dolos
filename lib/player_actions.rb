@@ -10,6 +10,8 @@ module PlayerActions
       move(@input.split(" ", 2).last)
     when "look"
       look
+    when "menu"
+      return_to_menu
     end
 
     parse_input
@@ -23,8 +25,21 @@ module PlayerActions
     puts current_room.list_exits
   end
 
+  def help
+    puts "Available Commands"
+    puts "look............display the current room"
+    puts "move 'exit'.....move through a specific exit"
+    puts "exit............exit the game"
+    puts "menu............back to game menu"
+  end
+
+  def return_to_menu
+    Dolos::GameRunner.new.run
+  end
+
   def exit
     puts "Goodbye!"
+    super
   end
 
   def move(exit_string)
