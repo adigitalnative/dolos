@@ -6,13 +6,11 @@ RSpec.describe "Game" do
   end
 
   context "list_game_rooms" do
-    before do
-      @game = FactoryBot.create(:game)
-    end
-    xit "outputs the game's rooms" do
-      #Weird
-    end
     it "includes rooms associated with the current game"
     it "does not include rooms associated with other games"
+  end
+
+  context ".connect_room_prompt" do
+    it "creates a one-way passage between the current room and another room"
   end
 end
