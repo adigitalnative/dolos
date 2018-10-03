@@ -24,6 +24,8 @@ module PlayerActions
       drop_item(@input2)
     when "inv"
       inventory
+    when "build"
+      enter_build_mode
     end
     parse_input
   end
@@ -41,6 +43,7 @@ module PlayerActions
     puts "look.................display the current room"
     puts "move <exit>..........move through a specific exit"
     puts "edit room............go into room editor"
+    puts "build................enter build mode"
     puts "menu.................back to game menu"
     puts "exit.................exit the game"
   end
