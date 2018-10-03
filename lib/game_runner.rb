@@ -59,6 +59,8 @@ class Dolos::GameRunner
   def display_help_menu
     puts "Available Commands"
     puts "help...............Display this menu"
+    puts "new................Start a new game"
+    puts "load...............Load a saved game"
     puts "exit...............Leave the game"
     process_input
   end
