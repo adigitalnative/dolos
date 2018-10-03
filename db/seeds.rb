@@ -1,3 +1,4 @@
+puts "Creating a square game"
 square_game = Game.create(name: "Square Game")
 north_west_room = square_game.rooms.first
 north_east_room = square_game.rooms.last
@@ -12,3 +13,5 @@ south_west_room.connect_to(south_east_room, "East")
 
 south_west_room.connect_to(north_west_room, "North")
 north_west_room.connect_to(south_west_room, "South")
+puts "Square game created"
+puts "Successfully seeded database"
