@@ -1,17 +1,27 @@
 module EditorActions
+  attr_accessor :new_room_params
+
   def edit_room
+    set_new_room_params
     print_room_edit_options
     parse_editor_input
-    
+  end
+
+  def set_new_room_params
+    @new_room_params = {
+      name: current_room.name,
+      description: current_room.description
+    }
   end
 
   def print_room_edit_options
+    current_room_status
     puts "What would you like to edit?"
     puts "Room Name (name)"
     puts "Room Description (desc)"
-    puts "Done with edit mode (done)"
+    puts "Save the edited game (save)"
+    puts "Exit editing mode without saving (exit)"
     puts "Go to game menu (menu)"
-    puts "Exit game (exit)"
   end
 
   def parse_editor_input
@@ -23,10 +33,12 @@ module EditorActions
     when "desc"
       edit_room_desc
     when "exit"
-      exit_game
+      look
+      parse_input
     when "options"
       print_room_edit_options
-    when "done"
+    when "save"
+      save_room
       look
       parse_input
     when "menu"
@@ -38,11 +50,24 @@ module EditorActions
     parse_editor_input
   end
 
+  def current_room_status
+    puts "***************************"
+    puts "Current Room Status"
+    puts "***************************"
+    puts new_room_params[:name]
+    puts new_room_params[:description]
+    puts "***************************"
+  end
+
+  def save_room
+    current_room.update_attributes(new_room_params)
+  end
+
   def edit_room_name
     puts "Current room name: #{current_room.name}"
     puts "New room name:"
     new_name = gets.chomp
-    current_room.update_attributes(name: new_name)
+    new_room_params[:name] = new_name
     puts "Room name now: #{current_room.name}"
     print_room_edit_options
     parse_editor_input
@@ -52,7 +77,7 @@ module EditorActions
     puts "Current room description: #{current_room.description}"
     puts "New room description:"
     new_desc = gets.chomp
-    current_room.update_attributes(description: new_desc)
+    new_room_params[:description] = new_desc
     puts "Room Description now:"
     puts "#{current_room.description}"
     print_room_edit_options
