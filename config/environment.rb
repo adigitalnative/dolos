@@ -19,5 +19,5 @@ ActiveRecord::Base.establish_connection(
 DB = ActiveRecord::Base.connection
 
 if ENV["DOLOS_ENV"] == "test"
-  ActiveRecord::Migration.verbose = false
+  ActiveRecord::Migration.verbose = true
 end
