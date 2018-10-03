@@ -18,4 +18,9 @@ class Room < ActiveRecord::Base
     "Exits: #{exit_array.join(", ")}"
   end
 
+  def two_way_connect_to(second_room, outgoing_name, incoming_name)
+    # params = {:second_room, :outgoing_name, :incoming_name}
+    Door.create(name: outgoing_name, room_incoming_id: self.id, room_outgoing_id: second_room.id)
+    Door.create(name: incoming_name, room_incoming_id: second_room.id, room_outgoing_id: self.id)
+  end
 end
