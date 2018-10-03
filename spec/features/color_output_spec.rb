@@ -4,11 +4,11 @@ describe "ColorOutput" do
   context ".parse_for_color(string)" do
 
     it "returns the same string if there are no color codes" do
-      expect(Game.parse_for_color("foo")).to eq("foo")
+      expect(ColorOutput.parse_for_color("foo")).to eq("foo")
     end
 
     it "returns a colorized parsed string" do
-      expect(Game.parse_for_color("Text %color:red to color"))
+      expect(ColorOutput.parse_for_color("Text %color:red to color")).to eq("Text \e[0;31;49mto color\e[0m")
     end
 
     it "returns a string that is identical to the input string except for color"
@@ -23,11 +23,11 @@ describe "ColorOutput" do
     end
 
     it "returns true if there is a color code" do
-      expect(Game.has_colors?(@color_string)).to eq(true)
+      expect(ColorOutput.has_colors?(@color_string)).to eq(true)
     end
 
     it "returns false for no color codes" do
-      expect(Game.has_colors?(@plain_string)).to eq(false)
+      expect(ColorOutput.has_colors?(@plain_string)).to eq(false)
     end
 
   end

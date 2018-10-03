@@ -2,7 +2,6 @@ class Game < ActiveRecord::Base
   include PlayerActions
   include EditorActions
   include BuilderActions
-  extend ColorOutput
 
   has_many :rooms
   has_one :player
