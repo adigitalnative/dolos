@@ -27,4 +27,16 @@ class ColorOutput
     # Use the color regex to check if the string has any color codes
     text_to_check.split(COLOR_REGEX).count > 1 ? true : false
   end
+
+  def self.help
+    puts "How to use Colors:"
+    puts "............................................................"
+    puts "Colors are started with the color flag:"
+    puts "%color:colorname"
+    puts "The colorname should be one of the following"
+    String.colors.each do |color_symbol|
+      puts color_symbol.to_s.colorize(color_symbol)
+    end
+    true
+  end
 end
