@@ -17,7 +17,7 @@ RSpec.describe "Game" do
       @player
     end
 
-    it "loads the game" do
+    xit "loads the game" do
       expect { @game.load() }.to output(/Welcome to the game/).to_stdout
     end
   end
