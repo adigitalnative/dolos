@@ -1,5 +1,6 @@
 class Game < ActiveRecord::Base
   include PlayerActions
+  include EditorActions
 
   has_many :rooms
   has_one :player
