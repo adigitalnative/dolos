@@ -66,8 +66,7 @@ module EditorActions
   def edit_room_name
     puts "Current room name: #{current_room.name}"
     puts "New room name:"
-    new_name = gets.chomp
-    new_room_params[:name] = new_name
+    new_room_params[:name] = ColorOutput.parse_for_color(gets.chomp)
     puts "Room name now: #{current_room.name}"
     print_room_edit_options
     parse_editor_input
@@ -76,8 +75,7 @@ module EditorActions
   def edit_room_desc
     puts "Current room description: #{current_room.description}"
     puts "New room description:"
-    new_desc = gets.chomp
-    new_room_params[:description] = new_desc
+    new_room_params[:description] = ColorOutput.parse_for_color(gets.chomp)
     puts "Room Description now:"
     puts "#{current_room.description}"
     print_room_edit_options
