@@ -27,8 +27,8 @@ RSpec.describe "A Room" do
   context ".connect_to(room, outgoing_name, incoming_name)" do
     it "succeeds in connecting two rooms" do
       room_count = @room.exits.count
-      @room.connect_to(room: @room_two, outgoing_name: "East", incoming_name: "West")
-      expect(@room.exits.count).to eq(room_count + 2)
+      @room.connect_to(@room_two, "East")
+      expect(@room.exits.count).to eq(room_count + 1)
     end
   end
 end
