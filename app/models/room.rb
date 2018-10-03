@@ -17,9 +17,16 @@ class Room < ActiveRecord::Base
     end
     "Exits: #{exit_array.join(", ")}"
   end
+  
+  def list_items
+    item_array = Item.all.select{|item| item.owner==self}.map do |item|
+      item.name
+    end
+    "Room items: #{item_array.join(", ")}"
+  end
 
-  def two_way_connect_to(second_room, outgoing_name, incoming_name)
-    connect_to(second_room, outgoing_name)
-    second_room.connect_to(self, incoming_name)
+  def two_way_connect_to(second_room, incoming_name, outgoing_name)
+    connect_to(second_room, incoming_name)
+    second_room.connect_to(self, outgoing_name)
   end
 end
