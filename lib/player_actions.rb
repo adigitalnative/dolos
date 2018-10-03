@@ -1,5 +1,4 @@
 module PlayerActions
-
   def parse_input
     @input1 = gets.chomp.downcase
     @input2 = @input1.split(" ", 2).last
@@ -34,6 +33,7 @@ module PlayerActions
     puts ""
     puts current_room.description
     puts current_room.list_exits
+    puts current_room.list_items
   end
 
   def help
@@ -42,7 +42,11 @@ module PlayerActions
     puts "move <exit>..........move through a specific exit"
     puts "edit room............go into room editor"
     puts "menu.................back to game menu"
+    puts "pickup <item>.................picksup an item from the room"
+    puts "drop <item>.................dop an item from inventory to the room"
+    puts "inv.................display player inventory"
     puts "exit.................exit the game"
+    
   end
 
   def return_to_menu
@@ -88,7 +92,9 @@ module PlayerActions
   end
   
   def inventory
-    player.items.select{|item| item.owner=player}.each {|item| puts "#{item.name} - Description: #{item.description}"}
+    puts "Items:"
+    # binding.pry
+    player.items.select{|item| item.owner==player}.each {|item| puts "#{item.name} - Description: #{item.description}"}
   end
   
 end
