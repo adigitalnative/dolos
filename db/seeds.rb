@@ -8,5 +8,10 @@ south_west_room = Room.create(name: "Southwest Room: The Fourth", description: "
 north_east_room.two_way_connect_to(south_east_room, "South", "North")
 south_east_room.two_way_connect_to(south_west_room, "West", "East")
 south_west_room.two_way_connect_to(north_west_room, "North", "South")
+
+rope = Item.create(name: "Rope", description: "10ft sturdy rope", game: square_game, owner: square_game.player)
+key = Item.create(name: "Key1", description: "Your starting key", game: square_game, owner: square_game.player)
+
+
 puts "Square game created"
 puts "Successfully seeded database"
