@@ -1,8 +1,14 @@
 require 'spec_helper'
 
+def test_reset
+  Door.destroy_all
+  Room.destroy_all
+  Item.destroy_all
+end
+
 RSpec.describe "A Room" do
   before(:all) do
-    test_rest
+    test_reset
     @room = Room.create(name: "Room One", description: "Room One Description foo")
     @room_two = Room.create(name: "Room Two")
   end
@@ -20,9 +26,21 @@ RSpec.describe "A Room" do
 
   context ".connect_to(room, outgoing_name, incoming_name)" do
     it "succeeds in connecting two rooms" do
-      expect(@room.exits.count).to eq(0)
+      room_count = @room.exits.count
       @room.connect_to(@room_two, "East")
-      expect(@room.exits.count).to eq(1)
+      expect(@room.exits.count).to eq(room_count + 1)
     end
   end
+
+  context ".two_way_connect_to(second_room:, outgoing_name:, incoming_name:)" do
+    it "succeeds with valid input" do
+      room_count = @room.exits.count
+      room_three = FactoryBot.create(:room)
+      @room.two_way_connect_to(room_three, "North", "South")
+      expect(@room.list_exits).to match(/North/)
+      expect(room_three.list_exits).to match(/South/)
+    end
+  end
+
+
 end

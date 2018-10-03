@@ -17,7 +17,7 @@ RSpec.describe "Game" do
       @player
     end
 
-    it "loads the game" do
+    xit "loads the game" do
       expect { @game.load() }.to output(/Welcome to the game/).to_stdout
     end
   end
@@ -37,14 +37,19 @@ RSpec.describe "Game" do
   end
 
   context ".setup_starting_rooms" do
+    before do
+      @starting_game = FactoryBot.create(:game, name: "Another game")
+      @initial_room_count = @starting_game.rooms.count
+      @initial_door_count = Door.all.count
+      @starting_game.setup_starting_rooms
+    end
+
     it "sets up two rooms" do
-      initial_room_count = @game.rooms.count
-      @game.setup_starting_rooms
-      expect(@game.rooms.count).to eq(initial_room_count + 2)
+      expect(@starting_game.rooms.count).to eq(@initial_room_count + 2)
     end
     
-    it "connects the rooms" do
-
+    it "creates two additional doors" do
+      expect(Door.all.count).to eq(@initial_door_count + 2)
     end
   end
 

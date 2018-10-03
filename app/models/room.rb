@@ -8,7 +8,6 @@ class Room < ActiveRecord::Base
   belongs_to :game
 
   def connect_to(other_room, name="A door")
-    # creates a door leading to self
     Door.create(name: name, room_incoming_id: self.id, room_outgoing_id: other_room.id)
   end
 
@@ -19,4 +18,8 @@ class Room < ActiveRecord::Base
     "Exits: #{exit_array.join(", ")}"
   end
 
+  def two_way_connect_to(second_room, outgoing_name, incoming_name)
+    connect_to(second_room, outgoing_name)
+    second_room.connect_to(self, incoming_name)
+  end
 end

@@ -78,7 +78,6 @@ class Dolos::GameRunner
 
   def exit
     puts "Goodbye! See you next time."
-    super
   end
 
   def create_and_begin_new_game
