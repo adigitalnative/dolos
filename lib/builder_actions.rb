@@ -53,7 +53,7 @@ module BuilderActions
   def connect_room_prompt
     puts "Connect to another room, two-way."
     puts "Room ID you'd like to connect to:"
-    room = Room.find(gets.chomp.to_i)
+    room = current_game.rooms.find(gets.chomp.to_i)
     puts "Name for the door"
     outgoing_exit_name = ColorOutput.parse_for_color(gets.chomp)
     puts "Alias for the door (likely just the name without color)"
