@@ -146,7 +146,7 @@ class Dolos::GameRunner
   end
 
   def create_and_begin_new_game
-    puts "Name your new game:"
+    puts "\e[0;97;49mName your new game:\e[0m"
     name = gets.chomp
     @game = Game.create(name: name)
     @game.load
