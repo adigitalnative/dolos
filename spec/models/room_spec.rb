@@ -24,11 +24,16 @@ RSpec.describe "A Room" do
     expect(@room).to respond_to(:exits)
   end
 
-  context ".connect_to(room, outgoing_name, incoming_name)" do
+  context ".connect_to(room, outgoing_name, shortcut)" do
     it "succeeds in connecting two rooms" do
       room_count = @room.exits.count
-      @room.connect_to(@room_two, "East")
+      @room.connect_to(@room_two, "East", "east")
       expect(@room.exits.count).to eq(room_count + 1)
+    end
+
+    it "defaults the shortcut to the name if no shortcut is provided" do
+      @room.connect_to(@room_two, "Foo exit")
+      expect(@room.exits.find_by(name: "Foo exit").shortcut).to eq("Foo exit")
     end
   end
 
