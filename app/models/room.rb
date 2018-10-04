@@ -3,8 +3,11 @@ class Room < ActiveRecord::Base
   has_many :exits, class_name: "Door", foreign_key: "room_incoming_id"
   has_many :exit_rooms, through: :exits,  source: :exit
   has_many :entrance_rooms, through: :entrances,  source: :entrance
-  has_many :items, as: :owner
   belongs_to :game
+  
+  def items
+    Item.all.select{|item| item.owner==self}
+  end
 
 
   def connect_to(other_room, name, shortcut=nil)
@@ -20,7 +23,7 @@ class Room < ActiveRecord::Base
   end
   
   def list_items
-    item_array = Item.all.select{|item| item.owner==self}.map do |item|
+    item_array = items.map do |item|
       item.name
     end
     "Room items: #{item_array.join(", ")}"
