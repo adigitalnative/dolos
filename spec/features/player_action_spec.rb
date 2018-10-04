@@ -30,14 +30,14 @@ describe "PlayerActions" do
   
   context ".pickup_item" do
     it "sets the current room's params as the params" do
-      expect {@game.pickup_item('key1')}.to output(/Pickedup Key1/).to_stdout
+      expect {@game.pickup_item('key1')}.to output(/Picked up Key1/).to_stdout
       expect {@game.inventory}.to output(/Key1/).to_stdout
     end
   end
 
   context ".drop_item" do
     it "saves any new_room_params to the database for the current room" do
-      expect {@game.drop_item('rope')}.to output(/Droped Rope/).to_stdout
+      expect {@game.drop_item('rope')}.to output(/Dropped Rope/).to_stdout
       expect {@game.look}.to  output(/Rope/).to_stdout
     end
   end

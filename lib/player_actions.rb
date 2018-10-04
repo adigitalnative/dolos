@@ -45,11 +45,10 @@ module PlayerActions
     puts "edit room............go into room editor"
     puts "build................enter build mode"
     puts "menu.................back to game menu"
-    puts "pickup <item>.................picksup an item from the room"
-    puts "drop <item>.................dop an item from inventory to the room"
-    puts "inv.................display player inventory"
+    puts "pickup <item>........picks up an item"
+    puts "drop <item>..........drop an item"
+    puts "inv................. display player inventory"
     puts "exit.................exit the game"
-    
   end
 
   def return_to_menu
@@ -77,7 +76,7 @@ module PlayerActions
     if item and item.owner==current_room
       item.owner=player
       item.save
-      puts "Pickedup #{item.name}"
+      puts "Picked up #{item.name}"
     else
       puts "No item to pickup."
     end
@@ -88,15 +87,14 @@ module PlayerActions
     if item and item.owner==player
       item.owner=current_room
       item.save
-      puts "Droped #{item.name}"
+      puts "Dropped #{item.name}"
     else
-      puts "No item to drop."
+      puts "You don't have #{item_string}."
     end
   end
   
   def inventory
     puts "Items:"
-    # binding.pry
     player.items.select{|item| item.owner==player}.each {|item| puts "#{item.name} - Description: #{item.description}"}
   end
   
