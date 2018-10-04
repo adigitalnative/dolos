@@ -2,6 +2,8 @@ class Game < ActiveRecord::Base
   include PlayerActions
   include EditorActions
   include BuilderActions
+  include ItemCreatorActions
+  
 
   has_many :rooms
   has_one :player
@@ -19,7 +21,7 @@ class Game < ActiveRecord::Base
   def setup_game
     setup_starting_rooms
     rooms << @starting_room
-    player = Player.create(location: @starting_room, game: self)
+    Player.create(location: @starting_room, game: self)
   end
 
   def setup_starting_rooms
@@ -41,6 +43,9 @@ class Game < ActiveRecord::Base
       room.id
     end
   end
-
+  
+  def items
+    Item.all.select{|item| item.game==self}
+  end
 
 end
