@@ -47,11 +47,17 @@ class Dolos::GameRunner
 
   def prompt_for_saved_game
     available_games = []
-    puts "Please select a previous game:"
+    puts ""
+    puts "Saved Games".colorize(:light_white)
+    basic_divider
     Game.all.each do |game|
       available_games << game.id
-      puts "#{game.id}: #{game.name}"
+      puts "#{game.id}: #{game.name}".colorize(:light_white)
     end
+
+    basic_divider
+    puts ""
+    puts "Please select a previous game:".colorize(:cyan)
 
     input = menu_process_input
     input = input.to_i
@@ -60,9 +66,10 @@ class Dolos::GameRunner
       @game = Game.find(input)
       @game.load
     elsif input == "exit"
-      exit
+      exit_game
     else
-      puts "That's not a valid selection. Please try again"
+      puts "That's not a valid selection. Please try again.".colorize(:red)
+      puts "Hint: Use the number, not the name.".colorize(:red)
       prompt_for_saved_game
     end
   end
@@ -106,6 +113,14 @@ class Dolos::GameRunner
     full_array = []
     20.times { full_array << base_array }
     puts full_array.join
+  end
+
+  def basic_divider
+    string ="."
+    divider = ""
+    60.times {divider += string}
+
+    puts divider
   end
 
   def welcome_user
