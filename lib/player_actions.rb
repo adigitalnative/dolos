@@ -17,6 +17,9 @@ module PlayerActions
       if @input2 == "room"
         edit_room
       end
+      if @input2 == 'item'
+        edit_item
+      end
     when "pickup"
       pickup_item(@input2)
     when "drop"
@@ -45,7 +48,7 @@ module PlayerActions
     puts "look.................display the current room"
     puts "move <exit>..........move through a specific exit"
     puts "edit room............go into room editor"
-    puts "edit item............go into item editor (not implemented)"
+    puts "edit item............go into item editor"
     puts "build................enter build mode"
     puts "make................enter make mode"
     puts "menu.................back to game menu"
