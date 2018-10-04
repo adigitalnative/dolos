@@ -88,8 +88,21 @@ class Dolos::GameRunner
     process_input
   end
 
+  def pretty_divider
+    base_array = ["\e[0;31;49m•\e[0m", "\e[0;37;49m•\e[0m", "\e[0;34;49m•\e[0m"].join()
+    full_array = []
+    20.times { full_array << base_array }
+    puts full_array.join
+  end
+
   def welcome_user
-    puts "Welcome to the game"
+    puts ""
+    pretty_divider
+    puts ""
+    puts "Dolos".colorize(:light_white).center(70)
+    puts ""
+    pretty_divider
+    puts ""
     puts "Type 'help' at any time for a list of available commands"
     menu_prompt
   end
