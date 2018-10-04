@@ -10,7 +10,7 @@ RSpec.describe "Door" do
     test_rest
     @room1 = Room.create(name: "Room One", description: "Room One Description foo")
     @room2 = Room.create(name: "Room Two", description: "Room Twp Description Bar")
-    @door=@room1.connect_to(@room2, "The name")
+    @door=@room1.connect_to(@room2, "The name", "shortcut")
   end
 
   it ".name returns the name" do
@@ -26,5 +26,9 @@ RSpec.describe "Door" do
   it ".entrance and .exit returns rooms" do
     expect(@door.entrance).to eq(@room2)
     expect(@door.exit).to eq(@room1)
+  end
+
+  it "has a shortcut command" do
+    expect(@door.shortcut).to eq("shortcut")
   end
 end

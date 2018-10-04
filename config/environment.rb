@@ -3,6 +3,7 @@ Bundler.require
 
 require 'active_record'
 require 'rake'
+require 'colorize'
 
 # Require all of our models and lib files
 Dir[File.join(File.dirname(__FILE__), "../lib", "*.rb")].each {|f| require f}

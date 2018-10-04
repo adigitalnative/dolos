@@ -7,8 +7,10 @@ class Room < ActiveRecord::Base
   # has_many :players
   belongs_to :game
 
-  def connect_to(other_room, name="A door")
-    Door.create(name: name, room_incoming_id: self.id, room_outgoing_id: other_room.id)
+
+  def connect_to(other_room, name, shortcut=nil)
+    shortcut = shortcut || name
+    Door.create(name: name, room_incoming_id: self.id, room_outgoing_id: other_room.id, shortcut: shortcut)
   end
 
   def list_exits
@@ -25,8 +27,8 @@ class Room < ActiveRecord::Base
     "Room items: #{item_array.join(", ")}"
   end
 
-  def two_way_connect_to(second_room, incoming_name, outgoing_name)
-    connect_to(second_room, incoming_name)
-    second_room.connect_to(self, outgoing_name)
+  def two_way_connect_to(second_room, incoming_name, incoming_shortcut, outgoing_name, outgoing_shortcut)
+    connect_to(second_room, incoming_name, incoming_shortcut)
+    second_room.connect_to(self, outgoing_name, outgoing_shortcut)
   end
 end

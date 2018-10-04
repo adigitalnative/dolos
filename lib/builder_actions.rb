@@ -55,23 +55,31 @@ module BuilderActions
     puts "Room ID you'd like to connect to:"
     room = Room.find(gets.chomp.to_i)
     puts "Name for the door"
-    outgoing_exit_name = gets.chomp
+    outgoing_exit_name = ColorOutput.parse_for_color(gets.chomp)
+    puts "Alias for the door (likely just the name without color)"
+    outgoing_exit_alias = gets.chomp
     puts "Name for the returning door"
-    incoming_exit_name = gets.chomp
-    current_room.two_way_connect_to(room, outgoing_exit_name, incoming_exit_name)
+    incoming_exit_name = ColorOutput.parse_for_color(gets.chomp)
+    puts "Alias for the returning door (likely just the name without color)"
+    incoming_exit_alias = gets.chomp
+    current_room.two_way_connect_to(room, outgoing_exit_name, outgoing_exit_alias, incoming_exit_name, incoming_exit_alias)
     puts "Connected this room to #{ room.name } via #{ outgoing_exit_name } and returning via #{ incoming_exit_name}"
   end
 
   def dig_room_prompt
     puts "Digging a room and connecting to it in both directions..."
     puts "Name for the new room:"
-    room_name = gets.chomp
+    room_name = ColorOutput.parse_for_color(gets.chomp)
     puts "Description for the new room:"
-    room_desc = gets.chomp
+    room_desc = ColorOutput.parse_for_color(gets.chomp)
     puts "Exit name for this room to the new room:"
-    outgoing_exit_name = gets.chomp
+    outgoing_exit_name = ColorOutput.parse_for_color(gets.chomp)
+    puts "Alias for the door (likely just the name without color)"
+    outgoing_exit_alias = gets.chomp
     puts "Exit name for the new room to this room:"
-    incoming_exit_name = gets.chomp
+    incoming_exit_name = ColorOutput.parse_for_color(gets.chomp)
+    puts "Name for the returning door"
+    incoming_exit_name = ColorOutput.parse_for_color(gets.chomp)
     puts ""
     puts "Confirm:"
     puts ""

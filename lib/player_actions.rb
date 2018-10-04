@@ -63,7 +63,7 @@ module PlayerActions
   end
 
   def move(exit_string)
-    door = current_room.exits.find {|door| door.name.downcase == exit_string }
+    door = current_room.exits.find {|door| door.shortcut && door.shortcut.downcase == exit_string }
     if door
       player.update_attributes(location:door.entrance)
       look
