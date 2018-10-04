@@ -10,6 +10,7 @@ gem 'pry'
 gem 'rake'
 gem 'factory_bot', '~> 4.0'
 gem 'colorize'
+gem 'ruby-progressbar'
 
 group :test do
   gem 'database_cleaner'

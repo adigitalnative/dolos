@@ -45,6 +45,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
+    ruby-progressbar (1.10.0)
     sinatra (2.0.4)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -70,6 +71,7 @@ DEPENDENCIES
   pry
   rake
   rspec
+  ruby-progressbar
   sinatra-activerecord
   sqlite3
 

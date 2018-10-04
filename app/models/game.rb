@@ -11,11 +11,16 @@ class Game < ActiveRecord::Base
   after_create :setup_game
 
   def load
-    puts "Loading........."
-    sleep(0.5)
-    puts "Welcome to the game."
+    puts ""
+    progress_bar
+    puts ""
     look
     parse_input
+  end
+
+  def progress_bar
+    progressbar = ProgressBar.create(format: "\e[0;97;49m%t \e[0;90;49m|\e[0;31;49m%b\e[0;90;49m>>\e[0m", title: "Loading Game", total: 60, length: 60)
+    60.times { progressbar.increment; sleep 0.01 }
   end
 
   def setup_game
