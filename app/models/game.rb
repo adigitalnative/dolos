@@ -3,6 +3,7 @@ class Game < ActiveRecord::Base
   include EditorActions
   include BuilderActions
   include ItemCreatorActions
+  include ItemEditorActions
   
 
   has_many :rooms
@@ -46,6 +47,12 @@ class Game < ActiveRecord::Base
   def room_ids
     rooms.map do |room|
       room.id
+    end
+  end
+  
+  def item_ids
+    items.map do |item|
+      item.id
     end
   end
   
