@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "EditorActions" do
-  before(:all) do
+  before(:each) do
     @game = FactoryBot.create(:game)
   end
 

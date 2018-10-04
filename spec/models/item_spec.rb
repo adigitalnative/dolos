@@ -1,15 +1,7 @@
 require 'spec_helper'
-require 'pry'
-
-def test_reset
-  Door.destroy_all
-  Room.destroy_all
-  Item.destroy_all
-end
 
 RSpec.describe "Item" do
-  before(:all) do
-    test_reset
+  before(:each) do
     @room1 = Room.create(name: "Room One", description: "Room One Description foo")
     @room2 = Room.create(name: "Room Two", description: "Room Twp Description Bar")
     @item1 =Item.create(name: "A thing", description: "stuff")

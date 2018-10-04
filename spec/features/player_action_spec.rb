@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "PlayerActions" do
-  before(:all) do
+  before(:each) do
     @game = FactoryBot.create(:game, name: "The Game")
     Item.create(name: "Rope", description: "10ft sturdy rope", game: @game, owner: @game.player)
     Item.create(name: "Key1", description: "Your starting key", game: @game, owner: @game.current_room)

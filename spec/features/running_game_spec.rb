@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe "Starting the app" do
-  before(:all) do
+  before(:each) do
     @game_runner = Dolos::GameRunner.new
   end
 
@@ -40,7 +40,7 @@ RSpec.describe "Starting the app" do
   end
 
   context "when there is an existing game" do
-    before(:all) do
+    before(:each) do
       @game_one = FactoryBot.create(:game)
     end
 

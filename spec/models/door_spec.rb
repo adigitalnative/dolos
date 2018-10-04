@@ -1,13 +1,7 @@
 require 'spec_helper'
 
-def test_rest
-  Door.destroy_all
-  Room.destroy_all
-end
-
 RSpec.describe "Door" do
-  before(:all) do
-    test_rest
+  before(:each) do
     @room1 = Room.create(name: "Room One", description: "Room One Description foo")
     @room2 = Room.create(name: "Room Two", description: "Room Twp Description Bar")
     @door=@room1.connect_to(@room2, "The name", "shortcut")

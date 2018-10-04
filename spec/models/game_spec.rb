@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe "Game" do
-  before(:all) do
+  before(:each) do
     @game = FactoryBot.create(:game, name: "The Game")
   end
 
@@ -36,7 +36,7 @@ RSpec.describe "Game" do
   end
 
   context ".setup_starting_rooms" do
-    before do
+    before(:each) do
       @starting_game = FactoryBot.create(:game, name: "Another game")
       @initial_room_count = @starting_game.rooms.count
       @initial_door_count = Door.all.count

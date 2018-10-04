@@ -29,7 +29,7 @@ describe "ColorOutput" do
   end
 
   context "#has_colors?" do
-    before do
+    before(:each) do
       @color_string = "This is some text %color:foo - WITH COLOR"
       @plain_string = "This is some text WITH NO COLOR"
     end
