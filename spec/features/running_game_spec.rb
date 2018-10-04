@@ -6,7 +6,7 @@ RSpec.describe "Starting the app" do
   end
 
   it "welcomes the user" do
-    expect { @game_runner.welcome_user }.to output(/Welcome to the game/).to_stdout
+    expect { @game_runner.welcome_user }.to output(/Dolos/).to_stdout
   end
 
   it "exits on 'exit'" do
