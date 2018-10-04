@@ -37,11 +37,11 @@ RSpec.describe "A Room" do
     end
   end
 
-  context ".two_way_connect_to(second_room:, outgoing_name:, incoming_name:)" do
+  context ".two_way_connect_to(second_room:, outgoing_name:, outgoing_alias, incoming_name:, incoming_alias)" do
     it "succeeds with valid input" do
       room_count = @room.exits.count
       room_three = FactoryBot.create(:room)
-      @room.two_way_connect_to(room_three, "North", "South")
+      @room.two_way_connect_to(room_three, "North", "North", "South", "South")
       expect(@room.list_exits).to match(/North/)
       expect(room_three.list_exits).to match(/South/)
     end

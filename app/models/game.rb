@@ -25,7 +25,7 @@ class Game < ActiveRecord::Base
   def setup_starting_rooms
     @starting_room = Room.create(name: "The First Room", description: "A great room", game: self)
     second_room = Room.create(name: "The second room", description: "Another room", game: self)
-    @starting_room.two_way_connect_to(second_room, "East", "West")
+    @starting_room.two_way_connect_to(second_room, "East", "east", "West", "west")
   end
 
   def current_game

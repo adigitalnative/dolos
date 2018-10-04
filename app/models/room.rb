@@ -27,8 +27,8 @@ class Room < ActiveRecord::Base
     "Room items: #{item_array.join(", ")}"
   end
 
-  def two_way_connect_to(second_room, incoming_name, outgoing_name)
-    connect_to(second_room, incoming_name)
-    second_room.connect_to(self, outgoing_name)
+  def two_way_connect_to(second_room, incoming_name, incoming_shortcut, outgoing_name, outgoing_shortcut)
+    connect_to(second_room, incoming_name, incoming_shortcut)
+    second_room.connect_to(self, outgoing_name, outgoing_shortcut)
   end
 end
