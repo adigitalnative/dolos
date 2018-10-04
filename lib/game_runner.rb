@@ -10,6 +10,8 @@ class Dolos::GameRunner
   end
 
   def menu_process_input
+    puts ""
+    print "\e[0;32;49m» \e[0m"
     input = gets.chomp
 
     case input.downcase
@@ -114,7 +116,8 @@ class Dolos::GameRunner
     puts ""
     pretty_divider
     puts ""
-    puts "Type 'help' at any time for a list of available commands"
+    puts "\e[0;33;49mType '\e[0;93;49mhelp\e[0;33;49m' at any time for a list of available commands\e[0m"
+    puts ""
     display_main_menu
   end
 
@@ -126,16 +129,19 @@ class Dolos::GameRunner
   end
 
   def new_game_prompt
-    puts "Would you like to start a new game? (new):"
+    puts "\e[0;36;49mWould you like to start a new game? (\e[0;96;49mnew\e[0;36;49m)\e[0m"
   end
 
   def load_game_prompt
-    puts "Would you like to load a saved game? (load)"
-    puts "Would you like to delete a saved game? (delete)"
+    puts "\e[0;36;49mWould you like to load a saved game? (\e[0;96;49mload\e[0;36;49m)\e[0m"
+    puts "\e[0;36;49mWould you like to delete a saved game? (\e[0;96;49mdelete\e[0;36;49m)\e[0m"
   end
 
   def exit_game
+    puts ""
     puts "Goodbye! See you next time."
+    puts ""
+    sleep(0.5)
     exit
   end
 
