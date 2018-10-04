@@ -5,7 +5,6 @@ module BuilderActions
     get_build_input
   end
 
-
   def build_mode_menu
     puts "Build Mode: Available Commands"
     puts "dig...............dig a new room"

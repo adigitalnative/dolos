@@ -7,8 +7,6 @@ describe "PlayerActions" do
     Item.create(name: "Key1", description: "Your starting key", game: @game, owner: @game.current_room)
   end
   
-
-
   context ".look" do
     it "prints the room title" do
       expect {@game.look}.to output(/The First Room/).to_stdout
