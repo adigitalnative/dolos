@@ -2,6 +2,7 @@ class ColorOutput
 
   COLOR_REGEX = /%color:/
 
+  # Takes in a string, returns a string with ANSI(?) characters for color.
   def self.parse_for_color(string)
     split_for_colors(string)
     if has_colors?(string)
