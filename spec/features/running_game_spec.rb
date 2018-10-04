@@ -10,7 +10,7 @@ RSpec.describe "Starting the app" do
   end
 
   it "exits on 'exit'" do
-    expect {@game_runner.exit}.to output(/Goodbye/).to_stdout
+    expect {@game_runner.exit_game}.to output(/Goodbye/).to_stdout
   end
 
   context ".display_help_menu" do

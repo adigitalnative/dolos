@@ -6,17 +6,27 @@ class Dolos::GameRunner
 
   def run
     welcome_user
-    process_input
+    process_main_menu_input
   end
 
-  def process_input
+  def menu_process_input
     input = gets.chomp
 
     case input.downcase
     when "help" || "h"
       display_help_menu
     when "exit" || "e"
-      exit
+      exit_game
+    else
+      input
+    end
+
+  end
+
+  def process_main_menu_input
+    input = menu_process_input
+
+    case input.downcase
     when "new"
       create_and_begin_new_game
     when "load"
@@ -24,12 +34,12 @@ class Dolos::GameRunner
         prompt_for_saved_game
       else
         puts "There is no game to load... type 'help' for help"
-        process_input
+        process_main_menu_input
       end
     when "delete"
       prompt_for_game_to_delete
     else
-      process_input
+      process_main_menu_input
     end
   end
 
@@ -41,7 +51,8 @@ class Dolos::GameRunner
       puts "#{game.id}: #{game.name}"
     end
 
-    input = gets.chomp.to_i
+    input = menu_process_input
+    input = input.to_i
 
     if available_games.include?(input)
       @game = Game.find(input)
@@ -70,7 +81,7 @@ class Dolos::GameRunner
       puts "#{@game.name} deleted."
       puts ""
       menu_prompt
-      process_input
+      process_main_menu_input
     elsif input == "exit"
       exit
     else
@@ -85,7 +96,7 @@ class Dolos::GameRunner
     puts "new................Start a new game"
     puts "load...............Load a saved game"
     puts "exit...............Leave the game"
-    process_input
+    process_main_menu_input
   end
 
   def pretty_divider
@@ -104,10 +115,10 @@ class Dolos::GameRunner
     pretty_divider
     puts ""
     puts "Type 'help' at any time for a list of available commands"
-    menu_prompt
+    display_main_menu
   end
 
-  def menu_prompt
+  def display_main_menu
     new_game_prompt
     if saved_games?
       load_game_prompt
@@ -123,8 +134,9 @@ class Dolos::GameRunner
     puts "Would you like to delete a saved game? (delete)"
   end
 
-  def exit
+  def exit_game
     puts "Goodbye! See you next time."
+    exit
   end
 
   def create_and_begin_new_game
