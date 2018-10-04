@@ -1,4 +1,8 @@
 rake db:create_migration NAME=create_rooms
 rake db:create_migration NAME=create_charecters 
-
 rake db:create_migration NAME=create_items
+
+
+
+
+

@@ -52,6 +52,8 @@ RSpec.describe "Game" do
     end
   end
 
+  
+
   context ".current_room" do
     it "returns a room" do
       expect(@game.current_room.class).to eq(Room)

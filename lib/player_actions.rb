@@ -25,6 +25,8 @@ module PlayerActions
       inventory
     when "build"
       enter_build_mode
+    when "make"
+      enter_item_creator_mode
     end
     parse_input
   end
@@ -43,7 +45,9 @@ module PlayerActions
     puts "look.................display the current room"
     puts "move <exit>..........move through a specific exit"
     puts "edit room............go into room editor"
+    puts "edit item............go into item editor (not implemented)"
     puts "build................enter build mode"
+    puts "make................enter make mode"
     puts "menu.................back to game menu"
     puts "pickup <item>........picks up an item"
     puts "drop <item>..........drop an item"
@@ -73,7 +77,7 @@ module PlayerActions
   
   def pickup_item(item_string)
     item = current_room.items.find {|el| el.name.downcase == item_string }
-    if item and item.owner==current_room
+    if item
       item.owner=player
       item.save
       puts "Picked up #{item.name}"
@@ -84,7 +88,7 @@ module PlayerActions
   
   def drop_item(item_string)
     item = player.items.find {|el| el.name.downcase == item_string }
-    if item and item.owner==player
+    if item
       item.owner=current_room
       item.save
       puts "Dropped #{item.name}"
@@ -95,7 +99,7 @@ module PlayerActions
   
   def inventory
     puts "Items:"
-    player.items.select{|item| item.owner==player}.each {|item| puts "#{item.name} - Description: #{item.description}"}
+    player.items.each {|item| puts "#{item.name} - Description: #{item.description}"}
   end
   
 end
