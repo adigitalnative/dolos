@@ -140,7 +140,7 @@ class Dolos::GameRunner
     puts ""
     pretty_divider
     puts ""
-    puts "Dolos".colorize(:light_white).center(70)
+    puts "Dolos: A Dungeon Crawling Experiment".colorize(:light_white).center(70)
     puts ""
     pretty_divider
     puts ""

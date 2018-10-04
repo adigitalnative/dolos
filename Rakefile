@@ -15,3 +15,8 @@ namespace :factory do
     touch "./spec/factories/#{ENV['NAME']}.rb"
   end
 end
+
+desc "Start up the game from rake"
+task :start do
+  ruby "bin/dolos.rb"
+end
