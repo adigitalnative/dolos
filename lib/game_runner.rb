@@ -74,27 +74,40 @@ class Dolos::GameRunner
     end
   end
 
+  def progress_bar_for_delete
+    progressbar = ProgressBar.create(format: "\e[0;97;49m%t \e[0;90;49m|\e[0;31;49m%b\e[0;90;49m>>\e[0m", title: "Deleting #{@game.name}", total: 60, length: 60)
+    60.times { progressbar.increment; sleep 0.01 }
+  end
+
   def prompt_for_game_to_delete
     available_games = []
-    puts "Please select a saved game:"
+    puts ""
+    puts "Saved Games".colorize(:light_white)
+    basic_divider
     Game.all.each do |game|
       available_games << game.id
-      puts "#{game.id}: #{game.name}"
+      puts "#{game.id}: #{game.name}".colorize(:light_white)
     end
 
-    input = gets.chomp.to_i
+    basic_divider
+    puts ""
+    puts "Please select a saved game to delete:".colorize(:cyan)
+
+    input = menu_process_input
+    input = input.to_i
 
     if available_games.include?(input)
       @game = Game.find(input)
       @game.destroy
-      puts "#{@game.name} deleted."
+      progress_bar_for_delete
+      puts "#{@game.name.capitalize} deleted.".colorize(:red)
       puts ""
-      menu_prompt
-      process_main_menu_input
+      welcome_user
     elsif input == "exit"
-      exit
+      exit_game
     else
-      puts "That is not a valid selection. Please try again"
+      puts "That is not a valid selection. Please try again.".colorize(:red)
+      puts "Hint: Use the number, not the name".colorize(:red)
       prompt_for_game_to_delete
     end
   end
