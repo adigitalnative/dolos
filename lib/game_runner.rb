@@ -5,8 +5,13 @@ end
 class Dolos::GameRunner
 
   def run
+    display_welcome_ascii
     welcome_user
     process_main_menu_input
+  end
+
+  def display_welcome_ascii
+    ASCIIArt.dolos
   end
 
   def menu_process_input
