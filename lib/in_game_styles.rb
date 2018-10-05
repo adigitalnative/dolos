@@ -26,4 +26,22 @@ class StyleElement
   def self.menu_doc(command, description)
     puts command + description.rjust(GAME_WIDTH-command.length,".")
   end
+
+  def self.word_wrap(string)
+    width = GAME_WIDTH
+    lines = []
+    line = ""
+    string.split(/\s+/).each do |word|
+      if line.size + word.size >= width
+        lines << line
+        line = word
+      elsif line.empty?
+       line = word
+      else
+       line << " " << word
+     end
+     end
+     lines << line if line
+    return lines.join "\n"
+  end
 end

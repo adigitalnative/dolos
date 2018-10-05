@@ -120,6 +120,10 @@ unless Game.find_by(name: "Triwizard Tournament")
   maze_room_19.two_way_connect_to(maze_room_24, "South", "South", "North", "North")
   maze_room_20.two_way_connect_to(maze_room_25, "South", "South", "North", "North")
   progressbar.progress+=4
+
+  # Build items in the room
+  triwizard_cup = Item.create(name: "The Triwizard Cup", description: "A tropy. Definitly NOT a Portkey...", game: maze_game, owner: maze_room_23)
+
 else
   52.times { progressbar.increment; sleep 0.01 }
 end

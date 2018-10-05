@@ -1,4 +1,7 @@
 class Room < ActiveRecord::Base
+
+  before_save :word_wrap_description
+
   has_many :entrances, class_name: "Door", foreign_key: "room_outgoing_id"
   has_many :exits, class_name: "Door", foreign_key: "room_incoming_id"
   has_many :exit_rooms, through: :exits,  source: :exit
@@ -32,5 +35,9 @@ class Room < ActiveRecord::Base
   def two_way_connect_to(second_room, incoming_name, incoming_shortcut, outgoing_name, outgoing_shortcut)
     connect_to(second_room, incoming_name, incoming_shortcut)
     second_room.connect_to(self, outgoing_name, outgoing_shortcut)
+  end
+
+  def word_wrap_description
+    self.description = StyleElement.word_wrap(self.description)
   end
 end
