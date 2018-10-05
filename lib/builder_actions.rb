@@ -63,6 +63,7 @@ module BuilderActions
     incoming_exit_alias = gets.chomp
     current_room.two_way_connect_to(room, outgoing_exit_name, outgoing_exit_alias, incoming_exit_name, incoming_exit_alias)
     puts "Connected this room to #{ room.name } via #{ outgoing_exit_name } and returning via #{ incoming_exit_name}"
+    binding.pry
   end
 
   def dig_room_prompt
@@ -114,5 +115,6 @@ module BuilderActions
     puts "Exiting build mode"
     ""
     look
+    # get_gameplay_input
   end
 end

@@ -15,7 +15,7 @@ module EditorActions
   end
 
   def print_room_edit_options
-    current_room_status
+    print_current_room_status
     puts "What would you like to edit?"
     puts "Room Name (name)"
     puts "Room Description (desc)"
@@ -33,8 +33,7 @@ module EditorActions
     when "desc"
       edit_room_desc
     when "exit"
-      look
-      parse_input
+      exit_room_editor
     when "options"
       print_room_edit_options
     when "save"
@@ -50,7 +49,12 @@ module EditorActions
     parse_editor_input
   end
 
-  def current_room_status
+  def exit_room_editor
+    look
+    parse_input
+  end
+
+  def print_current_room_status
     puts "***************************"
     puts "Current Room Status"
     puts "***************************"
