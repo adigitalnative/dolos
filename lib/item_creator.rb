@@ -1,4 +1,5 @@
 module ItemCreatorActions
+
   def enter_item_creator_mode
     @new_item_owner=player
     puts "Entering Item Creator"
@@ -15,7 +16,7 @@ module ItemCreatorActions
 
   def get_make_input
     item_creator_menu
-    puts "Enter cmd:"
+    print "\e[0;32;49m» \e[0m"
     input = gets.chomp
     case input.downcase
     when "list"
@@ -29,6 +30,8 @@ module ItemCreatorActions
       get_make_input
     when "exit"
       exit_make_mode
+    else
+      get_make_input
     end
   end
 
@@ -95,5 +98,6 @@ module ItemCreatorActions
   def exit_make_mode
     puts "Exiting Item Creator"
     look
+    parse_input
   end
 end

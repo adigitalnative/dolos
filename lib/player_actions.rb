@@ -1,5 +1,6 @@
 module PlayerActions
   def parse_input
+    StyleElement.prompt_cue
     @input1 = gets.chomp.downcase
     @input2 = @input1.split(" ", 2).last
     case @input1.split(" ").first
@@ -35,12 +36,18 @@ module PlayerActions
   end
 
   def look
-    puts "**********************************************************************"
-    puts current_room.name
     puts ""
-    puts current_room.description
+    StyleElement.divider
+    puts current_room.name.center(StyleElement.game_width)
+    StyleElement.divider
+    puts ""
+    puts current_room.description.center(StyleElement.game_width)
+    puts ""
+    StyleElement.divider
+    puts ""
     puts current_room.list_exits
     puts current_room.list_items
+    puts ""
   end
 
   def help
@@ -50,7 +57,7 @@ module PlayerActions
     puts "edit room............go into room editor"
     puts "edit item............go into item editor"
     puts "build................enter build mode"
-    puts "make................enter make mode"
+    puts "make.................enter make mode"
     puts "menu.................back to game menu"
     puts "pickup <item>........picks up an item"
     puts "drop <item>..........drop an item"
