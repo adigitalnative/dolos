@@ -16,15 +16,18 @@ module EditorActions
 
   def print_room_edit_options
     print_current_room_status
-    puts "What would you like to edit?"
+    puts "What would you like to edit?".colorize(:green)
+    puts ""
     puts "Room Name (name)"
     puts "Room Description (desc)"
-    puts "Save the edited game (save)"
+    puts "Save the edited room (save)"
     puts "Exit editing mode without saving (exit)"
     puts "Go to game menu (menu)"
+    puts ""
   end
 
   def parse_editor_input
+    StyleElement.prompt_cue
     input = gets.chomp.downcase
 
     case input
@@ -55,12 +58,18 @@ module EditorActions
   end
 
   def print_current_room_status
-    puts "***************************"
-    puts "Current Room Status"
-    puts "***************************"
-    puts new_room_params[:name]
-    puts new_room_params[:description]
-    puts "***************************"
+    puts ""
+    puts "Current Room Status".center(StyleElement.game_width)
+    StyleElement.menu_divider
+    puts ""
+    StyleElement.divider
+    puts new_room_params[:name].center(StyleElement.game_width)
+    StyleElement.divider
+    puts ""
+    puts new_room_params[:description].center(StyleElement.game_width)
+    puts ""
+    StyleElement.divider
+    puts ""
   end
 
   def save_room

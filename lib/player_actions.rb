@@ -86,9 +86,10 @@ module PlayerActions
     door = current_room.exits.find {|door| door.shortcut && door.shortcut.downcase == exit_string }
     if door
       player.update_attributes(location:door.entrance)
+      sleep(0.5)
       look
     else
-      puts "That's not an exit!"
+      puts "That's not an exit!".colorize(:red)
     end
   end
   
