@@ -1,5 +1,6 @@
 module PlayerActions
   def parse_input
+    StyleElement.prompt_cue
     @input1 = gets.chomp.downcase
     @input2 = @input1.split(" ", 2).last
     case @input1.split(" ").first
@@ -35,31 +36,44 @@ module PlayerActions
   end
 
   def look
-    puts "**********************************************************************"
-    puts current_room.name
     puts ""
-    puts current_room.description
+    StyleElement.divider
+    puts current_room.name.center(StyleElement.game_width)
+    StyleElement.divider
+    puts ""
+    puts current_room.description.center(StyleElement.game_width)
+    puts ""
+    StyleElement.divider
+    puts ""
     puts current_room.list_exits
     puts current_room.list_items
+    puts ""
   end
 
   def help
-    puts "Available Commands"
-    puts "look.................display the current room"
-    puts "move <exit>..........move through a specific exit"
-    puts "edit room............go into room editor"
-    puts "edit item............go into item editor"
-    puts "build................enter build mode"
-    puts "make................enter make mode"
-    puts "menu.................back to game menu"
-    puts "pickup <item>........picks up an item"
-    puts "drop <item>..........drop an item"
-    puts "inv................. display player inventory"
-    puts "exit.................exit the game"
+    puts ""
+    puts "Available Commands".center(StyleElement.game_width)
+    StyleElement.menu_divider
+    puts ""
+    StyleElement.menu_doc("look", "display the current room")
+    StyleElement.menu_doc("move <exit>", "move through a specfic exit")
+    StyleElement.menu_doc("edit room", "go into room editor")
+    StyleElement.menu_doc("edit item", "go into item editor")
+    StyleElement.menu_doc("build", "enter build mode")
+    StyleElement.menu_doc("make", "enter make mode")
+    StyleElement.menu_doc("menu", "back to game menu")
+    StyleElement.menu_doc("pickup <item>", "picks up an item")
+    StyleElement.menu_doc("drop <item>", "drop an item")
+    StyleElement.menu_doc("inv", "display player inventory")
+    StyleElement.menu_doc("exit", "exit the game")
+    puts ""
   end
 
   def return_to_menu
+    puts ""
     puts "Your location will be saved for the next time you play."
+    puts ""
+    sleep(1)
     Dolos::GameRunner.new.run
   end
 
@@ -72,9 +86,10 @@ module PlayerActions
     door = current_room.exits.find {|door| door.shortcut && door.shortcut.downcase == exit_string }
     if door
       player.update_attributes(location:door.entrance)
+      sleep(0.5)
       look
     else
-      puts "That's not an exit!"
+      puts "That's not an exit!".colorize(:red)
     end
   end
   

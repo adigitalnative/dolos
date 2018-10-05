@@ -41,6 +41,8 @@ class Game < ActiveRecord::Base
   end
 
   def current_room
+    # Player MUST be reloaded for saved items to appear in the CLI, due to AR caching. Eventually this might move to a more specific place, but until needed for performance gains, leave it here.
+    player.reload
     player.location
   end
 
