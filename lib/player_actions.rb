@@ -57,14 +57,15 @@ module PlayerActions
     puts ""
     StyleElement.menu_doc("look", "display the current room")
     StyleElement.menu_doc("move <exit>", "move through a specfic exit")
+    StyleElement.menu_doc("inv", "display player inventory")
+    StyleElement.menu_doc("drop <item>", "drop an item")
+    StyleElement.menu_doc("pickup <item>", "pick up an item")
+    StyleElement.menu_doc("make", "make an item")
+    StyleElement.menu_doc("build", "enter build mode")
     StyleElement.menu_doc("edit room", "go into room editor")
     StyleElement.menu_doc("edit item", "go into item editor")
-    StyleElement.menu_doc("build", "enter build mode")
-    StyleElement.menu_doc("make", "enter make mode")
-    StyleElement.menu_doc("menu", "back to game menu")
     StyleElement.menu_doc("pickup <item>", "picks up an item")
-    StyleElement.menu_doc("drop <item>", "drop an item")
-    StyleElement.menu_doc("inv", "display player inventory")
+    StyleElement.menu_doc("menu", "back to game menu")
     StyleElement.menu_doc("exit", "exit the game")
     puts ""
   end

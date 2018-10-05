@@ -8,10 +8,14 @@ module ItemCreatorActions
 
 
   def item_creator_menu
-    puts "Item Creator: Available Commands"
-    puts "make...............dig a new item"
-    puts "owner...............change new item owner (Current new item owner: #{@new_item_owner.class} ID: #{@new_item_owner.id})"
-    puts "list..............list all items"
+    puts ""
+    puts "Item Creator: Available Commands".center(StyleElement.game_width)
+    StyleElement.menu_divider
+    puts ""
+    StyleElement.menu_doc("make", "dig a new item")
+    StyleElement.menu_doc("owner", "change new item owner")
+    StyleElement.menu_doc("", "(Current new item owner: #{@new_item_owner.class} ID: #{@new_item_owner.id})")
+    StyleElement.menu_doc("list", "list all items")
   end
 
   def get_make_input

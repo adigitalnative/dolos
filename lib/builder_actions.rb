@@ -6,11 +6,14 @@ module BuilderActions
   end
 
   def build_mode_menu
-    puts "Build Mode: Available Commands"
-    puts "dig...............dig a new room"
-    puts "connect...........connect to an existing room"
-    puts "list..............list all available rooms"
-    puts "teleport..........teleport to a specific room"
+    puts ""
+    puts "Build Mode: Available Commands".center(StyleElement.game_width)
+    StyleElement.menu_divider
+    puts ""
+    StyleElement.menu_doc("dig", "dig a new room")
+    StyleElement.menu_doc("connect", "connect to an existing room")
+    StyleElement.menu_doc("list", "list all available rooms")
+    StyleElement.menu_doc("teleport", "teleport to a specific room")
     puts ""
   end
 
@@ -78,8 +81,8 @@ module BuilderActions
     outgoing_exit_alias = gets.chomp
     puts "Exit name for the new room to this room:"
     incoming_exit_name = ColorOutput.parse_for_color(gets.chomp)
-    puts "Name for the returning door"
-    incoming_exit_name = ColorOutput.parse_for_color(gets.chomp)
+    puts "Alias for the returning door"
+    incoming_exit_alias = ColorOutput.parse_for_color(gets.chomp)
     puts ""
     puts "Confirm:"
     puts ""
@@ -92,7 +95,7 @@ module BuilderActions
     case gets.chomp.downcase
     when "y"
       new_room = Room.create(name: room_name, description: room_desc, game: current_game)
-      new_room.two_way_connect_to(current_room,  incoming_exit_name, outgoing_exit_name)
+      new_room.two_way_connect_to(current_room, incoming_exit_name, incoming_exit_alias, outgoing_exit_name, outgoing_exit_alias)
     end
   end
 
