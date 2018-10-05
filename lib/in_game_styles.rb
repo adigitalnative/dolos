@@ -15,4 +15,15 @@ class StyleElement
   def self.prompt_cue
     print "\e[0;32;49m➣  \e[0m"
   end
+
+  def self.menu_divider
+    characters = "."
+    string = ""
+    (GAME_WIDTH/characters.length).times { string += characters }
+    puts string.colorize(:gray)
+  end
+
+  def self.menu_doc(command, description)
+    puts command + description.rjust(GAME_WIDTH-command.length,".")
+  end
 end
