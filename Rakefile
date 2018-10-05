@@ -18,5 +18,6 @@ end
 
 desc "Start up the game from rake"
 task :start do
+  Rake::Task["db:seed"].invoke
   ruby "bin/dolos.rb"
 end
